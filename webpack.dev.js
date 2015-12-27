@@ -1,15 +1,20 @@
 var webpack = require("webpack");
 var path = require("path");
 
+var filename = require("./src/config")("development").script;
+
 module.exports = {
   entry: ["./src/client.js"],
   resolve: {
     moduleDirectories: ["node_modules"],
-    extensions: ["", ".js"]
+    extensions: ["", ".js"],
+    alias: {
+      "src": path.resolve(process.cwd(), "src")
+    }
   },
   output: {
     path: path.resolve(process.cwd(), "dist"),
-    filename: "app.js"
+    filename: filename
   },
   module: {
     loaders: [

@@ -1,6 +1,11 @@
-const isProd = process.env.NODE_ENV === "production";
+const config = function (mode) {
+  const isProd = mode === "production";
 
-// bundled JavaScript filename
-const script = isProd? "app.min.js" : "app.js";
+  // bundled JavaScript filename
+  const script = isProd? "app.min.js" : "app.js";
+  return { script };
+};
 
-export { script };
+// If we write `export default ...`,
+// `var config = require("config").default` is required.
+module.exports = config;
